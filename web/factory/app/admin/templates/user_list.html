@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block meta_description %}Admin Dashboard - Manage Users{% endblock %}
+{% block title %}Admin - Mangae Users{% endblock %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <h1>Admin - Manage Users</h1>
+    <div class="card mt-5">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Directions</h5>
+        </div>
+        <div class="card-body">
+            <div class="list-group list-group-flush">
+                <div class="list-group-item">
+                    <p>Use this page to manage existing users, either by adding, updating, or deleting them</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert Section -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }} alert-dismissible fade show mt-5" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <!-- User table -->
+    <table class="table table-hover table-bordered align-middle mt-5">
+        <thead>
+            <tr class="table-secondary">
+            <th scope="col">ID</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Last Login</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            {% for user in users %}
+            <tr>
+                <th id="{{ user.id }}">{{ user.id }}</th>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.lastlogindate }}</td>
+                <td>
+                    <a class="btn btn-outline-primary" 
+                       href="{{ url_for('admin.user_update', id=user.id) }}"
+                       role="button">UPDATE</a>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-outline-danger"
+                        hx-delete="{{ url_for('admin.user_delete', id=user.id) }}"
+                        hx-target="closest tr" 
+                        hx-swap="outerHTML">
+                            DELETE
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Add new user -->
+    <h3 class="mt-5">Add new user</h3>
+    <a class="btn btn-outline-success" href="{{ url_for('admin.user_create') }}" role="button">Add User</a>
+</div>
+{% endblock %}

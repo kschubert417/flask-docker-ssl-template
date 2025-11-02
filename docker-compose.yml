@@ -1,0 +1,81 @@
+services:
+  # =================================================================
+  # FLASK APPLICATION FACTORY =======================================
+  # =================================================================
+
+  ## ==============================================
+  ## DATABASE =====================================
+  ## ==============================================
+  app_factory_db:
+    image: mysql:5.7
+    ports:
+      - "${DB_PORT}:3306"
+    volumes:
+      - ./web/factory/mysql/data:/var/lib/mysql
+      - ./web/factory/mysql/conf.d:/etc/mysql/conf.d
+      - ./web/factory/init-scripts:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_LOWER_CASE_TABLE_NAMES=2
+      - MYSQL_DATABASE=app_factory
+      - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
+    networks:
+      - caddy_net
+
+  ## ==============================================
+  ## WEB SERVICE ==================================
+  ## ==============================================
+  app_factory_web:
+    build: ./web/factory
+    environment:
+      - FLASK_ENV=production # production or development
+      - FLASK_DEBUG=0
+      - FLASK_SECRET_KEY=${FLASK_SECRET_KEY}
+      - DATABASE_URL=mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@app_factory_db:3306/app_factory
+    ports:
+      - "${WEB_PORT}:5000"
+    volumes:
+      - ./web/factory:/app
+    depends_on:
+      - app_factory_db
+    networks:
+      - caddy_net
+
+  # =================================================================
+  # PHPMYADMIN ======================================================
+  # =================================================================
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.2.1
+    environment:
+      PMA_HOST: app_factory_db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+      UPLOAD_LIMIT: 20M
+    restart: always
+    networks:
+      - caddy_net
+
+  # =================================================================
+  # SSL =============================================================
+  # =================================================================
+  caddy:
+    restart: unless-stopped
+    image: caddy:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./conf:/etc/caddy
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - caddy_net
+    depends_on:
+      - app_factory_web
+
+networks:
+  caddy_net:
+    driver: bridge
+
+volumes:
+  caddy_data:
+  caddy_config:

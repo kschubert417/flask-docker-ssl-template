@@ -1,0 +1,6 @@
+# Exclude MySQL data and runtime files
+mysql/data/
+mysql/data/*
+*.sock
+*.pid
+*.log

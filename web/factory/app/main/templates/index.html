@@ -1,0 +1,344 @@
+{% extends "base.html" %}
+
+{% block title %}YOUR WEBSITE-Home{% endblock %}
+
+{% block content %}
+<!-- Page loading spinner -->
+<div class="page-loading active">
+    <div class="d-flex justify-content-center align-items-center position-absolute top-50 start-50 translate-middle">
+        <div class="page-spinner"></div>
+        <span class="ms-3">Loading...</span>
+    </div>
+</div>
+
+<!-- Flash Messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div class="row justify-content-center mt-4">
+    <div class="col-lg-8">
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endwith %}
+
+<!-- Hero Section -->
+<section class="bg-dark text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start">
+  <div class="container">
+    <div class="d-sm-flex align-items-center justify-content-between">
+      <div>
+        <h1>Your Challenges, <span class="text-warning">Our Solutions</span></h1>
+        <p class="lead my-4">
+            At YOUR WEBSITE, we help businesses operate more efficiently through automation, custom tools, and expert
+            support. Whether you're streamlining daily operations or rolling out a new digital tool, we turn complexity into
+            clarity.
+        </p>
+        <a href="{{ url_for('main.contact') }}" class="btn btn-primary btn-lg px-4 gap-3">Contact Us</a>
+      </div>
+      <img
+        class="img-fluid w-50 d-none d-sm-block"
+        src="{{ url_for('static', filename='images/logo-circle.svg') }}"
+        alt=""
+      />
+    </div>
+  </div>
+</section>
+<!-- Services ================================= -->
+<!-- Service 1: Process Automation -->
+<section class="service-section bg-light">
+    <div class="container">
+        <h1 class="pb-5">Our Services</h1>
+        <div class="row align-items-center">
+            <div class="col-md-6 pb-2 pb-md-0 mb-4 mb-md-0">
+                <div class="pe-lg-5">
+                    <img class="rounded-3 img-fluid d-none d-sm-block"
+                        src="{{ url_for('static', filename='images/process-automation.jpg') }}"
+                        alt="Process Automation">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2 class="h2 mb-4">Process Automation</h2>
+                <p class="mb-4">
+                    <b>Free your team from repetitive tasks and unlock greater efficiency.</b> 
+                    We build automation solutions that replace manual work with seamless, scalable workflows.
+                </p>
+                <div class="border rounded-3 mb-4">
+                    <div class="row row-cols-1 row-cols-sm-2 g-0">
+                        <div class="col d-flex align-items-center border-end-sm border-bottom p-3">
+                            <i class="bx bx-check-circle text-primary fs-3"></i>
+                            <div class="ps-3">
+                                <h6 class="mb-1">Optimized Workflows</h6>
+                                <p class="fs-sm mb-0">Streamline complex tasks with intelligent automation that adapts to your processes.</p>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-center border-bottom p-3">
+                            <i class="bx bx-time text-primary fs-3"></i>
+                            <div class="ps-3">
+                                <h6 class="mb-1">Time Savings</h6>
+                                <p class="fs-sm mb-0">Save hours every week by reducing repetitive, hands-on operations.</p>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-center border-end-sm p-3">
+                            <i class="bx bx-error text-primary fs-3"></i>
+                            <div class="ps-3">
+                                <h6 class="mb-1">Error Reduction</h6>
+                                <p class="fs-sm mb-0">Eliminate manual input mistakes with reliable, rule-based automation.</p>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-center p-3">
+                            <i class="bx bx-chart text-primary fs-3"></i>
+                            <div class="ps-3">
+                                <h6 class="mb-1">Scalable Reporting</h6>
+                                <p class="fs-sm mb-0">Automatically generate reports with real-time data and zero overhead.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <a href="{{ url_for('main.contact') }}" class="btn btn-primary">Get Started</a> -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Service 2: Data Integration -->
+<section class="service-section">
+    <div class="container">
+        <div class="row align-items-center flex-md-row-reverse">
+            <div class="col-md-6 pb-2 pb-md-0 mb-4 mb-md-0">
+                <div class="ps-lg-5">
+                    <img src="{{ url_for('static', filename='images/automation.jpg') }}"
+                        class="rounded-3 img-fluid d-none d-sm-block" alt="Data Integration">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2 class="h2 mb-4">Business Analytics</h2>
+                <p class="mb-4">
+                    <b>Turn raw data into real insights.</b>
+                    We connect your systems, centralize your information, and help you make smarter, faster decisions.
+                </p>
+                <div class="border rounded-3 mb-4">
+                    <div class="row row-cols-1 row-cols-sm-2 g-0">
+                        <div class="col d-flex align-items-center border-end-sm border-bottom p-3">
+                            <i class="bx bx-transfer text-primary fs-3"></i>
+                            <div class="ps-3">
+                                <h6 class="mb-1">Unified Data Sources</h6>
+                                <p class="fs-sm mb-0">Integrate data from across departments into one actionable view.</p>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-center border-bottom p-3">
+                            <i class="bx bx-sync text-primary fs-3"></i>
+                            <div class="ps-3">
+                                <h6 class="mb-1">Insight-Driven Problem Solving</h6>
+                                <p class="fs-sm mb-0">Spot inefficiencies, track trends, and make data-backed improvements.</p>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-center border-end-sm p-3">
+                            <i class="bx bx-shield text-primary fs-3"></i>
+                            <div class="ps-3">
+                                <h6 class="mb-1">Proactive Risk Management</h6>
+                                <p class="fs-sm mb-0">Identify risks early and take informed steps to mitigate them.</p>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-center p-3">
+                            <i class="bx bx-data text-primary fs-3"></i>
+                            <div class="ps-3">
+                                <h6 class="mb-1">Continuous Performance Monitoring</h6>
+                                <p class="fs-sm mb-0">Track KPIs and benchmarks to drive improvement across the board.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <a href="{{ url_for('main.contact') }}" class="btn btn-primary">Get Started</a> -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Service 3: UAT Testing -->
+<section class="service-section bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 pb-2 pb-md-0 mb-4 mb-md-0">
+                <div class="pe-lg-5">
+                    <img src="{{ url_for('static', filename='images/sw-testing.jpg') }}"
+                        class="rounded-3 img-fluid d-none d-sm-block" alt="UAT Testing">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2 class="h2 mb-4">UI/UX Testing</h2>
+                <p class="mb-4">
+                    <b>Ensure your software is ready for real users.</b>
+                    We provide end-to-end testing solutions that validate quality, functionality, and user experience before launch.
+                </p>
+                <div class="border rounded-3 mb-4">
+                    <div class="row row-cols-1 row-cols-sm-2 g-0">
+                        <div class="col d-flex align-items-center border-end-sm border-bottom p-3">
+                            <i class="bx bx-test-tube text-primary fs-3"></i>
+                            <div class="ps-3">
+                                <h6 class="mb-1">Comprehensive Quality Assurance</h6>
+                                <p class="fs-sm mb-0">We simulate real-world usage to ensure every feature works as intended.</p>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-center border-bottom p-3">
+                            <i class="bx bx-bug text-primary fs-3"></i>
+                            <div class="ps-3">
+                                <h6 class="mb-1">Early Bug Detection</h6>
+                                <p class="fs-sm mb-0">Catch critical issues before they reach your users.</p>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-center border-end-sm p-3">
+                            <i class="bx bx-user-check text-primary fs-3"></i>
+                            <div class="ps-3">
+                                <h6 class="mb-1">User-Centric Validation</h6>
+                                <p class="fs-sm mb-0">Involve real users in testing to confirm usability and acceptance.</p>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-center p-3">
+                            <i class="bx bx-file text-primary fs-3"></i>
+                            <div class="ps-3">
+                                <h6 class="mb-1">Actionable Documentation</h6>
+                                <p class="fs-sm mb-0">Deliverables include detailed reports with clear results, feedback, and resolution tracking.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <a href="{{ url_for('main.contact') }}" class="btn btn-primary">Get Started</a> -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Industry Focus -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Industries We Serve</h2>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm service-card">
+                    <div class="card-body p-4 text-center">
+                        <div class="icon-box mx-auto">
+                            <i class="bx bx-package text-white fs-4"></i>
+                        </div>
+                        <h4 class="mb-3">Supply Chain</h4>
+                        <p class="text-muted">Optimize your supply chain operations with our integrated solutions.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm service-card">
+                    <div class="card-body p-4 text-center">
+                        <div class="icon-box mx-auto">
+                            <i class="bx bx-money text-white fs-4"></i>
+                        </div>
+                        <h4 class="mb-3">Finance</h4>
+                        <p class="text-muted">Streamline financial processes and enhance reporting capabilities.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm service-card">
+                    <div class="card-body p-4 text-center">
+                        <div class="icon-box mx-auto">
+                            <i class="bx bx-buildings text-white fs-4"></i>
+                        </div>
+                        <h4 class="mb-3">Government</h4>
+                        <p class="text-muted">Modernize government operations with efficient digital solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- CTA Section -->
+<!-- <section class="bg-primary text-white py-5">
+    <div class="container py-4">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+                <h2 class="fw-bold mb-4">Ready to get started?</h2>
+                <p class="lead mb-4">Launch Your Project With Us</p>
+                <a href="{{ url_for('main.contact') }}" class="btn btn-outline-dark btn-lg px-4 gap-3">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</section> -->
+<!-- Contact Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        {% if alert %}
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="alert alert-{{ alert.type }} alert-dismissible fade show mt-3" role="alert">
+                    <strong>{{ alert.message }}</strong>
+                    {% if alert.error %}
+                    <ul class="mb-0">
+                        {% for field_errors in alert.error.values() %}
+                        {% for message in field_errors %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if not form_submitted %}
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="fw-bold mb-4">Get in Touch</h2>
+                <p class="text-muted mb-5">We'd love to hear from you. Reach out to us with any questions, feedback, or
+                    project inquiries.</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <form method="POST" action="{{ url_for('main.contact') }}" novalidate>
+                    {{ form.hidden_tag() }}
+                    <div class="row mb-3">
+                        <div class="col">
+                            {{ form.firstname.label(class="form-label") }}
+                            {{ form.firstname(class="form-control" + (' is-invalid' if form.firstname.errors else '')) }}
+                            {% for error in form.firstname.errors %}
+                            <div class="invalid-feedback d-block">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="col">
+                            {{ form.lastname.label(class="form-label") }}
+                            {{ form.lastname(class="form-control") }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        {{ form.email.label(class="form-label") }}
+                        {{ form.email(class="form-control" + (' is-invalid' if form.email.errors else '')) }}
+                        {% for error in form.email.errors %}
+                        <div class="invalid-feedback d-block">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.company.label(class="form-label") }}
+                        {{ form.company(class="form-control") }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.message.label(class="form-label") }}
+                        {{ form.message(class="form-control" + (' is-invalid' if form.email.errors else ''), rows="5") }}
+                        {% for error in form.message.errors %}
+                        <div class="invalid-feedback d-block">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    <div class="d-grid">
+                        {{ form.submit(class="btn btn-primary btn-lg") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}

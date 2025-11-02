@@ -1,0 +1,13 @@
+# *OR = variable put in override file
+# Environment to run flask application in
+FLASK_SECRET_KEY=REPLACE_THIS_VARIABLE
+
+# Environment Variables
+WEB_PORT=8000
+DB_PORT=3306
+MYSQL_USER=root
+MYSQL_PASSWORD=sqluserpw
+
+# Override Variables
+WEB_PORT_OR=5000
+DB_PORT_OR=3308

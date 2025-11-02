@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block meta_description %}Admin - View Messages{% endblock %}
+{% block title %}Admin - View Messages{% endblock %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <h1>Admin - View Messages</h1>
+    <div class="card mt-5">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Directions</h5>
+        </div>
+        <div class="card-body">
+            <div class="list-group list-group-flush">
+                <div class="list-group-item">
+                    <p>Use this page to view existing messsages</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- User table -->
+    <table class="table table-hover table-bordered align-middle mt-5">
+        <thead>
+            <tr class="table-secondary">
+                <th scope="col">ID</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Company</th>
+                <th scope="col">Email</th>
+                <th scope="col">Message</th>
+                <th scope="col">Date</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            {% for message in messages %}
+            <tr>
+                <th id="{{ message['ID'] }}">{{ message.id }}</th>
+                <td>{{ message.first_name }}</td>
+                <td>{{ message.last_name }}</td>
+                <td>{{ message.company }}</td>
+                <td>{{ message.email }}</td>
+                <td>{{ message.message }}</td>
+                <td>{{ message.date }}</td>
+                <td>
+                    <button type="button" class="btn btn-outline-danger"
+                        hx-delete="{{ url_for('admin.message_delete', id=message.id) }}"
+                        hx-target="closest tr" 
+                        hx-swap="outerHTML">
+                            DELETE
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- Pagination-->
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            {% if links.prev %}
+                <li class="page-item"><a class="page-link" href="{{ links.prev }}">Previous</a></li>
+            {% else %} 
+                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+            {% endif %}
+            <li class="page-item disabled"><a class="page-link">Page {{ pagination.page }} of {{ pagination.total_pages }}</a></li>
+            {% if links.next %}
+                <li class="page-item"><a class="page-link" href="{{ links.next }}">Next</a></li>
+            {% else %}
+                <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endblock %}

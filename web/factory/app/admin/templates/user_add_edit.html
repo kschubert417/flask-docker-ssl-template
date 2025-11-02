@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Admin - {{ action.title() }} User{% endblock %}
+
+{% block content %}
+<div class="container  mt-5 mb-5">
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h1 class="mb-3">Admin - {{ action.title() }} User</h1>
+        <form
+            action="{% if action == 'update' %}{{ url_for('admin.user_update', id=user.id) }}{% else %}{{ url_for('admin.user_create') }}{% endif %}"
+            method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <div class="mb-3">
+                {{ form.first_name.label(class="form-label") }}
+                {% for error in form.first_name.errors %}
+                    <div class="invalid-feedback d-block">{{ error }}</div>
+                {% endfor %}
+                {{ form.first_name(class="form-control" + (' is-invalid' if form.first_name.errors else '')) }}
+            </div>
+            <div class="mb-3">
+                {{ form.last_name.label(class="form-label") }}
+                {% for error in form.last_name.errors %}
+                    <div class="invalid-feedback d-block">{{ error }}</div>
+                {% endfor %}
+                {{ form.last_name(class="form-control" + (' is-invalid' if form.last_name.errors else '')) }}
+            </div>
+            <div class="mb-3">
+                {{ form.email.label(class="form-label") }}
+                {% for error in form.email.errors %}
+                    <div class="invalid-feedback d-block">{{ error }}</div>
+                {% endfor %}
+                {{ form.email(class="form-control" + (' is-invalid' if form.email.errors else '')) }}
+            </div>
+            <div class="mb-3">
+                {{ form.role.label(class="form-label") }}
+                {% for error in form.role.errors %}
+                    <div class="invalid-feedback d-block">{{ error }}</div>
+                {% endfor %}
+                {{ form.role(class="form-control" + (' is-invalid' if form.role.errors else '')) }}
+            </div>
+            <div class="mb-3">
+                {{ form.password.label }} {{ form.password(class_='form-control') }}
+                {% if action == 'update' %}
+                <p class="text-muted small">Leave password blank to keep the same password</p>
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.submit(class_='btn btn-primary') }}
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,280 @@
+{% extends "base.html" %}
+
+{% block title %}Our Services{% endblock %}
+
+{% block content %}
+
+<!-- Service 1: Process Automation -->
+<section class="service-section bg-light">
+    <div class="container">
+        <h1 class="pb-5">Our Services</h1>
+        <div class="row align-items-center">
+            <div class="col-md-6 pb-2 pb-md-0 mb-4 mb-md-0">
+                <div class="pe-lg-5">
+                    <img class="rounded-3 img-fluid d-none d-sm-block" 
+                        src="{{ url_for('static', filename='images/process-automation.jpg') }}" 
+                        alt="Process Automation">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2 class="h3 mb-4">Process Automation</h2>
+                <p class="mb-4">Streamline your workflows and eliminate manual tasks with intelligent automation solutions.</p>
+                <div class="border rounded-3 mb-4">
+                    <div class="row row-cols-1 row-cols-sm-2 g-0">
+                        <div class="col d-flex align-items-center border-end-sm border-bottom p-3">
+                            <i class="bx bx-check-circle text-primary fs-3"></i>
+                            <div class="ps-3">
+                                <h6 class="mb-1">Workflow Optimization</h6>
+                                <p class="fs-sm mb-0">Streamline complex business processes</p>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-center border-bottom p-3">
+                            <i class="bx bx-time text-primary fs-3"></i>
+                            <div class="ps-3">
+                                <h6 class="mb-1">Time Savings</h6>
+                                <p class="fs-sm mb-0">Reduce manual work hours</p>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-center border-end-sm p-3">
+                            <i class="bx bx-error text-primary fs-3"></i>
+                            <div class="ps-3">
+                                <h6 class="mb-1">Error Reduction</h6>
+                                <p class="fs-sm mb-0">Minimize human error</p>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-center p-3">
+                            <i class="bx bx-chart text-primary fs-3"></i>
+                            <div class="ps-3">
+                                <h6 class="mb-1">Performance Tracking</h6>
+                                <p class="fs-sm mb-0">Improve process efficiency</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="{{ url_for('main.contact') }}" class="btn btn-primary">Get Started</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Service 2: Data Integration -->
+<section class="service-section">
+    <div class="container">
+        <div class="row align-items-center flex-md-row-reverse">
+            <div class="col-md-6 pb-2 pb-md-0 mb-4 mb-md-0">
+                <div class="ps-lg-5">
+                    <img src="{{ url_for('static', filename='images/automation.jpg') }}" 
+                        class="rounded-3 img-fluid d-none d-sm-block" 
+                        alt="Data Integration">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2 class="h3 mb-4">Business Analytics</h2>
+                <p class="mb-4">Connect your systems and ensure seamless data flow across your organization.</p>
+                <div class="border rounded-3 mb-4">
+                    <div class="row row-cols-1 row-cols-sm-2 g-0">
+                        <div class="col d-flex align-items-center border-end-sm border-bottom p-3">
+                            <i class="bx bx-transfer text-primary fs-3"></i>
+                            <div class="ps-3">
+                                <h6 class="mb-1">Better decision-making</h6>
+                                <p class="fs-sm mb-0">Link multiple data sources</p>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-center border-bottom p-3">
+                            <i class="bx bx-sync text-primary fs-3"></i>
+                            <div class="ps-3">
+                                <h6 class="mb-1">Enhanced problem-solving</h6>
+                                <p class="fs-sm mb-0">Identifies pain points and provides efficient solutions.</p>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-center border-end-sm p-3">
+                            <i class="bx bx-shield text-primary fs-3"></i>
+                            <div class="ps-3">
+                                <h6 class="mb-1">Risk reduction</h6>
+                                <p class="fs-sm mb-0">Anticipates challenges and mitigates potential risks.</p>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-center p-3">
+                            <i class="bx bx-data text-primary fs-3"></i>
+                            <div class="ps-3">
+                                <h6 class="mb-1">Data Mapping</h6>
+                                <p class="fs-sm mb-0">Intelligent field matching</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="{{ url_for('main.contact') }}" class="btn btn-primary">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Service 3: UAT Testing -->
+<section class="service-section bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 pb-2 pb-md-0 mb-4 mb-md-0">
+                <div class="pe-lg-5">
+                    <img src="{{ url_for('static', filename='images/sw-testing.jpg') }}" 
+                        class="rounded-3 img-fluid d-none d-sm-block" 
+                        alt="UAT Testing">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2 class="h3 mb-4">UAT Testing</h2>
+                <p class="mb-4">Comprehensive testing solutions to ensure your new software system, website, or product work flawlessly.</p>
+                <div class="border rounded-3 mb-4">
+                    <div class="row row-cols-1 row-cols-sm-2 g-0">
+                        <div class="col d-flex align-items-center border-end-sm border-bottom p-3">
+                            <i class="bx bx-test-tube text-primary fs-3"></i>
+                            <div class="ps-3">
+                                <h6 class="mb-1">Quality Assurance</h6>
+                                <p class="fs-sm mb-0">Thorough testing process</p>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-center border-bottom p-3">
+                            <i class="bx bx-bug text-primary fs-3"></i>
+                            <div class="ps-3">
+                                <h6 class="mb-1">Bug Detection</h6>
+                                <p class="fs-sm mb-0">Early issue identification</p>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-center border-end-sm p-3">
+                            <i class="bx bx-user-check text-primary fs-3"></i>
+                            <div class="ps-3">
+                                <h6 class="mb-1">User Validation</h6>
+                                <p class="fs-sm mb-0">End-user acceptance</p>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-center p-3">
+                            <i class="bx bx-file text-primary fs-3"></i>
+                            <div class="ps-3">
+                                <h6 class="mb-1">Documentation</h6>
+                                <p class="fs-sm mb-0">Detailed test reports</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="{{ url_for('main.contact') }}" class="btn btn-primary">Get Started</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Industry Focus -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Industries We Serve</h2>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm service-card">
+                    <div class="card-body p-4 text-center">
+                        <div class="icon-box mx-auto">
+                            <i class="bx bx-package text-white fs-4"></i>
+                        </div>
+                        <h4 class="mb-3">Supply Chain</h4>
+                        <p class="text-muted">Optimize your supply chain operations with our integrated solutions.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm service-card">
+                    <div class="card-body p-4 text-center">
+                        <div class="icon-box mx-auto">
+                            <i class="bx bx-money text-white fs-4"></i>
+                        </div>
+                        <h4 class="mb-3">Finance</h4>
+                        <p class="text-muted">Streamline financial processes and enhance reporting capabilities.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm service-card">
+                    <div class="card-body p-4 text-center">
+                        <div class="icon-box mx-auto">
+                            <i class="bx bx-buildings text-white fs-4"></i>
+                        </div>
+                        <h4 class="mb-3">Government</h4>
+                        <p class="text-muted">Modernize government operations with efficient digital solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact Section -->
+<section class="py-5">
+    <div class="container">
+        {% if alert %}
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="alert alert-{{ alert.type }} alert-dismissible fade show mt-3" role="alert">
+                    <strong>{{ alert.message }}</strong>
+                    {% if alert.error %}
+                        <ul class="mb-0">
+                            {% for field_errors in alert.error.values() %}
+                                {% for message in field_errors %}
+                                    <li>{{ message }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if not form_submitted %}
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="fw-bold mb-4">Get in Touch</h2>
+                <p class="text-muted mb-5">We'd love to hear from you. Reach out to us with any questions, feedback, or project inquiries.</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <form method="POST" action="{{ url_for('main.contact') }}">
+                    {{ form.hidden_tag() }}
+                    <div class="row mb-3">
+                        <div class="col">
+                            {{ form.firstname.label(class="form-label") }}
+                            {% for error in form.firstname.errors %}
+                                <div class="invalid-feedback d-block">{{ error }}</div>
+                            {% endfor %}
+                            {{ form.firstname(class="form-control" + (' is-invalid' if form.firstname.errors else '')) }}
+                        </div>
+                        <div class="col">
+                            {{ form.lastname.label(class="form-label") }}
+                            {{ form.lastname(class="form-control") }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        {{ form.email.label(class="form-label") }}
+                        {% for error in form.email.errors %}
+                            <div class="invalid-feedback d-block">{{ error }}</div>
+                        {% endfor %}
+                        {{ form.email(class="form-control" + (' is-invalid' if form.email.errors else '')) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.company.label(class="form-label") }}
+                        {{ form.company(class="form-control") }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.message.label(class="form-label") }}
+                        {% for error in form.message.errors %}
+                            <div class="invalid-feedback d-block">{{ error }}</div>
+                        {% endfor %}
+                        {{ form.message(class="form-control" + (' is-invalid' if form.email.errors else ''), rows="5") }}
+                        
+                    </div>
+                    <div class="d-grid">
+                        {{ form.submit(class="btn btn-primary btn-lg") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}

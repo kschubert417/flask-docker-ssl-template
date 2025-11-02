@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="{% block meta_description %}{% endblock %}">
+        <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+        <meta name="author" content="Name">
+        <meta name="robots" content="index, follow">
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-N61TGB2GL9"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'G-N61TGB2GL9');
+        </script>
+        
+        <title>{% block title %}Flask App{% endblock %}</title>
+
+        <!-- Bootstrap 5.3 CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet" />
+
+        <!-- HTMX -->
+        <script src="https://unpkg.com/htmx.org@2.0.3" integrity="sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq" 
+                crossorigin="anonymous"></script>
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url_for('main.index') }}">YOUR WEBSITE</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.index') }}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.about') }}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.contact') }}">Contact</a>
+                        </li>
+                        {% if current_user.role == 'admin' %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item disabled" href="#">This dropdown is only visible to Admins</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{{ url_for('admin.list_users') }}">List Users</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('admin.message_list')}}">View Messages</a></li>
+                            </ul>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    <ul class="navbar-nav">
+                        {% if current_user.is_anonymous %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        {% block content %}{% endblock %}
+
+        <!-- Footer Section -->
+        <footer class="bg-dark text-white py-4">
+            <div class="container text-center">
+                <p class="mb-0">&copy; 2025 YOUR WEBSITE. All rights reserved.</p>
+                <div class="mt-2">
+                    <a href="#" class="text-secondary me-3">Privacy Policy</a>
+                    <a href="#" class="text-secondary">Terms of Service</a>
+                </div>
+                <!--<div class="mt-3">
+                    <a href="https://twitter.com" class="text-secondary me-2"><i class="bi bi-twitter"></i></a>
+                    <a href="https://facebook.com" class="text-secondary me-2"><i class="bi bi-facebook"></i></a>
+                    <a href="https://instagram.com" class="text-secondary"><i class="bi bi-instagram"></i></a>
+                </div>-->
+            </div>
+        </footer>
+
+        <!-- Bootstrap 5.3 JS Bundle -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Custom JavaScript -->
+        {% block extra_js %}{% endblock %}
+    </body>
+</html>
