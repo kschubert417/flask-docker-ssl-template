@@ -1,0 +1,56 @@
+# This override is for local testing
+# DO NOT PUT THIS FILE ON PRODUCTION SERVER
+services:
+  ## ==============================================
+  ## DATABASE =====================================
+  ## ==============================================
+  app_factory_db:
+    ports:
+      - "${DB_PORT_OR}:3306" # Different port for local use
+
+  ## ==============================================
+  ## WEB SERVICE ==================================
+  ## ==============================================
+  app_factory_web:
+    ports:
+      - "${WEB_PORT_OR}:5000"
+    # Set up to see requests made in terminal
+    command: >
+      gunicorn wsgi:app
+      --reload
+      --bind 0.0.0.0:5000
+      --workers 1
+      --access-logfile -
+      --error-logfile -
+      --log-level debug
+    volumes:
+      - ./web/factory:/app
+    environment:
+      FLASK_ENV: development
+      FLASK_DEBUG: 1
+      PYTHONUNBUFFERED: 1
+
+  phpmyadmin:
+    ports:
+      - "8080:80" # Access phpMyAdmin locally at http://localhost:8080
+    environment:
+      PMA_ABSOLUTE_URI: http://127.0.0.1 #http://localhost for phpmyadmin
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./conf/local:/etc/caddy
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - app_factory_web
+    networks:
+      - caddy_net
+
+volumes:
+  caddy_data:
+  caddy_config:
