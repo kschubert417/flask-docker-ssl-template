@@ -4,10 +4,6 @@ docker-compose.override.yml
 # Excluding directories where database files are stored
 web/*/mysql/data/**
 
-# Do not want to track files in Versions folder, but want Versions folder in repo
-# web/factory/migrations/versions/*
-# !web/factory/migrations/versions/.gitkeep
-
 # Excluding __pycache__ directories
 __pycache__/
 web/**/*.env
